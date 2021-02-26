@@ -34,12 +34,14 @@ public class Intersection {
         int minTime = Integer.MAX_VALUE;
         for (Street street : enteringStreets.values()) {
             Car firstCar = street.checkFirstCar();
-            if(firstCar != null && firstCar.totalTime < minTime) {
+            if (firstCar != null && firstCar.totalTime < minTime) {
                 minStreet = street;
                 minTime = firstCar.totalTime;
             }
         }
-        updateSchedule(minStreet);
+        if (minStreet != null) {
+            updateSchedule(minStreet);
+        }
         return minStreet;
     }
 

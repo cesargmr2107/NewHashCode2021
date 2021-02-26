@@ -39,5 +39,10 @@ class Street {
     public Car removeCar(){
         return waitingCars.poll();
     }
+
+    @Override
+    public String toString() {
+        return "Street{" + "originIntersection=" + originIntersection + ", endIntersection=" + endIntersection + ", name=" + name + ", travelTime=" + travelTime + ", waitingCars=" + waitingCars + '}';
+    }
     
 }

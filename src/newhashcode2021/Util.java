@@ -41,6 +41,8 @@ public class Util {
             FileWriter fw = new FileWriter(fileName);
             PrintWriter out = new PrintWriter(fw);
             out.print(fileContent);
+            out.close();
+            fw.close();
         } catch (Exception ex) {
             System.err.println("Ha ocurrido un problema al escribir el archivo");
         }

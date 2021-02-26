@@ -110,6 +110,8 @@ public class Problem {
         toret.append(nSchedules);
         toret.append("\n");
         toret.append(parsed);
+        
+        //System.out.println(toret.toString());
 
         return toret.toString();
     }

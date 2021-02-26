@@ -32,25 +32,34 @@ class Car {
     }
 
     public boolean move() {
-        
-        if (currentStreetTime == -1) {
-            currentStreetTime = route.peek().travelTime;
-        } else if (totalTime == 1) { // End of route
-            return false;
-        } else if (currentStreetTime == 1) { // End of current street
-            route.poll(); // Remove current street from route
-            route.peek().addCar(this); // Add to next street
-            return false;
-        }
-
-        currentStreetTime--;
         totalTime--;
+
+        if (currentStreetTime == -1) { // Start travelling next street
+            if (route.isEmpty()) { // Not end of route
+                return false;
+            }
+            currentStreetTime = route.peek().travelTime;
+        } else if (currentStreetTime == 1) { // End of current street
+            currentStreetTime = -1;
+            route.poll();
+            if (!route.isEmpty()) { // Not end of route
+                route.peek().addCar(this); // Add to next street
+            }
+            return false;
+        } else {
+            currentStreetTime--;
+        }
 
         return true;
     }
-    
-    public Street getNextStreet(){
+
+    public Street getNextStreet() {
         return route.peek();
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" + "id=" + id + ", route=" + route + ", totalTime=" + totalTime + ", currentStreetTime=" + currentStreetTime + '}';
     }
 
 }
